@@ -1,6 +1,6 @@
 ```bash
 $ mkdir GITHUB-USERNAME.github.io
-$ hub init && hub create -d "my happy place"
+$ hub init && hub create -d "my happy place" -h https://GITHUB-USERNAME.github.io
 $ hub checkout dev
 $ curl -o .gitignore https://raw.githubusercontent.com/github/gitignore/master/Node.gitignore
 $ curl -o .gitattributes https://raw.githubusercontent.com/alexkaratarakis/gitattributes/master/Web.gitattributes
