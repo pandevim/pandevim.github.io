@@ -1,0 +1,9 @@
+.claude/
+auxdir/
+*.aux
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.pdf
