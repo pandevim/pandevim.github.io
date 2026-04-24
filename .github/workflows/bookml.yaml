@@ -14,10 +14,16 @@ jobs:
       - name: Compile with BookML
         uses: vlmantova/bookml-action@v1
 
+      - name: Collect HTML output
+        run: |
+          ls -la "${{ runner.temp }}/auxdir"
+          mkdir -p site
+          cp -r "${{ runner.temp }}/auxdir/." site/
+
       - name: Upload to GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
-          path: auxdir/html
+          path: site
 
   deploy:
     needs: build
