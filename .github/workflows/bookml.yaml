@@ -4,21 +4,27 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
-      pages: write
-      id-token: write
+      contents: read
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
       - name: Compile with BookML
         uses: vlmantova/bookml-action@v1
+        with:
+          release: false
 
-      - name: Collect HTML output
+      - name: Inspect BookML output
         run: |
-          ls -la "${{ runner.temp }}/auxdir"
+          echo "--- workspace ---"
+          ls -la
+          echo "--- aux/ ---"
+          ls -la aux || true
+          echo "--- aux/index/ ---"
+          ls -la aux/index || true
+
+      - name: Stage site
+        run: |
           mkdir -p site
-          cp -r "${{ runner.temp }}/auxdir/." site/
+          cp -r aux/index/. site/
+          cp aux/index.pdf site/ 2>/dev/null || true
 
       - name: Upload to GitHub Pages
         uses: actions/upload-pages-artifact@v3
